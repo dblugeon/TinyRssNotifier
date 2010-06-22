@@ -1,8 +1,92 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		
+		<!--script type="text/javascript" src="ttrss.js"/-->
+          <script src="jquery-1.4.2.min.js"></script>
+          <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
+          <script type="text/javascript" src="qunit.js"></script>
+
+          <script type="text/javascript">
+          QUnit.log = function(result, message){
+            if(result){
+                console.log("test ok = "+message);
+            }else{
+                console.error("test fail = "+message);
+            }
+          };
+          
+          QUnit.testStart = function(name){
+               console.log("test start = "+name);
+          };
+          
+          QUnit.testDone = function(name, failures, total){
+               console.log("test ended = "+name+", failures = "+failures+", total = "+total);
+          };
+          
+          QUnit.moduleStart = function(name){
+               console.log("module start = "+name);
+          };
+          
+          QUnit.moduleDone = function(name, failures, total){
+               console.log("module ended = "+name+", failures = "+failures+", total = "+total);
+          };
+          
+          QUnit.done = function(failures, total){
+               console.log("end tests, failures "+failures+", total = "+total);
+          };
+          
+          function getButton(){
+               var regexpTtrssButton = /ttrss-button$/;
+               var itemArray = safari.extension.toolbarItems;
+                for (var i = 0; i < itemArray.length; ++i) {
+                    var item = itemArray[i];
+                     console.log(item.identifier);
+                              console.log(regexpTtrssButton.test(item.identifier));
+                    if (regexpTtrssButton.test(item.identifier))
+                        {
+                            return item;
+                       }
+                }
+}
+          
+          $(document).ready(function(){
+                
+                module("Testing settings");
+                
+                test("test default value of url", function() {
+                    var url = safari.extension.settings.url;
+                    equals( "http://tt-rss.org/demo/", url, "We expect value to be http://tt-rss.org/demo/" );
+                });
+                
+                test("test default value of login", function() {
+                    var login = safari.extension.settings.login;
+                    equals( "admin", login, "We expect value to be admin" );
+                });
+                
+                test("test default value of password", function() {
+                    var password = safari.extension.secureSettings.password;
+                    equals(undefined, password, "We expect value to be admin" );
+                });
+                
+                $.ajax({
+                    type: "GET",
+                    url: safari.extension.settings.url+"backend.php?op=getUnread&fresh=1&login="+safari.extension.settings.login,
+                    success: function(retour){
+                        var split = retour.split(";")[0];
+                        getButton().badge = split;
+                    },
+                    error: function(error){
+                        console.error("error "+error);
+                    }
+                });
+                
+
+          });
+          
+          var xml = new XMLHttpRequest();
+          xml.open('GET', "http://www.google.fr");
+          xml.send();
+          </script>
+        
     </head>
-	<body>
-	</body>
 </html>

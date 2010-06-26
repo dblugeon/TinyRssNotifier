@@ -24,17 +24,5 @@
 		<key>Type</key>
 		<string>TextField</string>
 	</dict>
-	<dict>
-		<key>Key</key>
-		<string>password</string>
-		<key>Password</key>
-		<true/>
-		<key>Secure</key>
-		<true/>
-		<key>Title</key>
-		<string>Password</string>
-		<key>Type</key>
-		<string>TextField</string>
-	</dict>
 </array>
 </plist>

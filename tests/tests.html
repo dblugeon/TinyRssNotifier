@@ -19,7 +19,7 @@
 		});		
 		
         test("test getting global unread", function() {
-            var unread = parseUnreadResponse("120;0");
+            var unread = parseTotalUnreadActiclesResponse("120;5");
             equals( "120", unread, "We expect value to be 120" );
         });
   });

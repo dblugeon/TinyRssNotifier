@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <script src="../TinyRssNotifier.safariextension/jquery-1.4.2.min.js"></script>
+  <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="qunit.js"></script>
+<script type="text/javascript" src="../TinyRssNotifier.safariextension/common.js"></script>
+  <script>
+  // safari-extension://org.dbn.tinyrssnotifier-2C93UWAPXJ/unit-tests.html
+  $(document).ready(function(){
+        module("parsing response");
+        
+		test("test getting good response", function(){
+			ok(noError("120;0"), "error not expected");
+		});
+		
+		test("test getting bad response", function(){
+			ok(!noError("-1;an error"), "error expected");
+		});		
+		
+        test("test getting global unread", function() {
+            var unread = parseUnreadResponse("120;0");
+            equals( "120", unread, "We expect value to be 120" );
+        });
+  });
+  </script>
+  
+</head>
+<body>
+  <h1 id="qunit-header">Testing common.js</h1>
+ <h2 id="qunit-banner"></h2>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+</body>
+</html>

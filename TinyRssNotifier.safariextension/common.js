@@ -38,7 +38,7 @@ function updateBadges(response){
 function getUpdateCountFromSite(){
     $.ajax({
         type: "GET",
-        url: safari.extension.settings.url+" backend.php?op=getUnread&fresh=1&login="+safari.extension.settings.login,
+        url: safari.extension.settings.url+"/backend.php?op=getUnread&fresh=1&login="+safari.extension.settings.login,
         success: function(response){
             if(noError(response)){
                 updateBadges(response);

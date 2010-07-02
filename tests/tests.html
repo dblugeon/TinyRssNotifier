@@ -9,7 +9,7 @@
   <script>
    var buttonName = "ttrss-button";
    safari.addNewTTRssButton = function(){
-        safari.addMockToolbarItem(new MockSafariToolbarItem(buttonName));
+        safari.addMockToolbarItem(new MockSafariToolbarItem(buttonName, 0, safari.extension.baseURI+"error.png"));
    };
   $(document).ready(function(){
         module("parsing response");
@@ -71,6 +71,15 @@
             updateBadges(response);
             for(var i = 0; i < getTTRssButtons().length; i++){
                 ok(getTTRssButtons()[i].badge == 56, "espected badge to 56");
+            }
+       });
+
+       test("update img for display error", function(){
+            safari.clearToolbarItems();
+            safari.addNewTTRssButton();
+            updateImageToolbarItems("error.png");
+			 for(var i = 0; i < getTTRssButtons().length; i++){
+                ok(getTTRssButtons()[i].image == safari.extension.baseURI+"error.png", "espected error.png");
             }
        });
   });

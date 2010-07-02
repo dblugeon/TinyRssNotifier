@@ -25,7 +25,6 @@ function getTTRssButtons(){
     return buttons;
 }
 
-//actualy untestable functions
 function updateBadges(response){
     var unread = parseTotalUnreadActiclesResponse(response);
     var buttons = getTTRssButtons();
@@ -33,21 +32,32 @@ function updateBadges(response){
         console.debug("buttons[i] = "+buttons[i]);
         buttons[i].badge = unread;
     }
- }
+}
 
+function updateImageToolbarItems(imageRelativePath){
+	var buttons = getTTRssButtons();
+    for (var i = 0; i < buttons.length; ++i){
+        buttons[i].image = safari.extension.baseURI + imageRelativePath;
+    }
+}
+
+//actualy untestable functions
 function getUpdateCountFromSite(){
     $.ajax({
         type: "GET",
         url: safari.extension.settings.url+"/backend.php?op=getUnread&fresh=1&login="+safari.extension.settings.login,
         success: function(response){
             if(noError(response)){
+				updateImageToolbarItems("icon.png");
                 updateBadges(response);
             }else{
+				updateImageToolbarItems("error.png");
                 console.error("error can't getting unread count "+response);
             }
         },
         error: function(error){
             console.error("error "+error);
+			updateImageToolbarItems("error.png");
         }
     });
     setTimeout(getUpdateCountFromSite, 10000);

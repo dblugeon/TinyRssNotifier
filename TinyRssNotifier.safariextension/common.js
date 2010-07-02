@@ -7,8 +7,6 @@ function parseTotalUnreadActiclesResponse(response){
      return unread;
 }
 
-
-//actualy untestable functions
 function getTTRssButtons(){
    var buttons = new Array();
    var regexpTtrssButton = /ttrss-button$/;
@@ -26,6 +24,7 @@ function getTTRssButtons(){
     return buttons;
 }
 
+//actualy untestable functions
 function updateBadges(response){
     var unread = parseTotalUnreadActiclesResponse(response);
     var buttons = getTTRssButtons();

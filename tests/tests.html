@@ -4,9 +4,11 @@
   <script src="../TinyRssNotifier.safariextension/jquery-1.4.2.min.js"></script>
   <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="qunit.js"></script>
+<script type="text/javascript" src="safariMock.js"></script>
 <script type="text/javascript" src="../TinyRssNotifier.safariextension/common.js"></script>
   <script>
-  // safari-extension://org.dbn.tinyrssnotifier-2C93UWAPXJ/unit-tests.html
+   var buttonName = "ttrss-button";
+
   $(document).ready(function(){
         module("parsing response");
         
@@ -22,6 +24,30 @@
             var unread = parseTotalUnreadActiclesResponse("120;5");
             equals( "120", unread, "We expect value to be 120" );
         });
+
+
+       module("getting TinyRss button");
+       
+       test("no ttrss button", function(){
+            safari.generateRandomToolbarItems(5);
+            ok(getTTRssButtons().length == 0, "No TTRss buttons espected");
+       });
+       
+       test("getting one ttrss button", function(){
+           expect(2);
+           var button = new ToolbarItem(buttonName, true);
+           safari.addMockToolbarItem(button);
+           ok(getTTRssButtons().length == 1, "one TTRss buttons espected");
+           ok(safari.extension.toolbarItems.pop() == button, "pop the TTRss button");
+       });
+       
+        test("getting more ttrss button", function(){
+           var numberTTButton = Math.random() * 10|0;
+           for(var i = 0; i < numberTTButton; i++){
+              safari.addMockToolbarItem(new ToolbarItem(buttonName));
+           }
+           ok(getTTRssButtons().length == numberTTButton, numberTTButton+" TTRss buttons espected");
+       });
   });
   </script>
   

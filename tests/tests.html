@@ -49,6 +49,28 @@
            }
            ok(getTTRssButtons().length == numberTTButton, numberTTButton+" TTRss buttons espected");
        });
+       
+       test("update badge", function(){
+            safari.clearToolbarItems();
+            safari.addNewTTRssButton();
+            var response = "56;20";
+            updateBadges(response);
+            for(var i = 0; i < getTTRssButtons().length; i++){
+                ok(getTTRssButtons()[i].badge == 56, "espected badge to 56");
+            }
+       });
+       
+       test("update badge for 2 buttons", function(){
+            safari.clearToolbarItems();
+            safari.addNewTTRssButton();
+            safari.addNewTTRssButton();
+            expect(2);
+            var response = "56;20";
+            updateBadges(response);
+            for(var i = 0; i < getTTRssButtons().length; i++){
+                ok(getTTRssButtons()[i].badge == 56, "espected badge to 56");
+            }
+       });
   });
   </script>
   

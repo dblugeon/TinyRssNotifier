@@ -19,8 +19,10 @@
 		});
 		
 		test("test getting bad response", function(){
-			ok(!noError("-1;an error"), "error expected");
-		});		
+			expect(2);
+			ok(!noError("-1;an error"), "error expected with return value at -1");
+			ok(!noError(""), "error expected with return empty string");
+		});
 		
         test("test getting global unread", function() {
             var unread = parseTotalUnreadActiclesResponse("120;5");

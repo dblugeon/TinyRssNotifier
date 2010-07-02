@@ -1,5 +1,6 @@
 function noError(response){
-    return parseTotalUnreadActiclesResponse(response) != -1;
+	var unread = parseTotalUnreadActiclesResponse(response);
+    return unread.length > 0 && unread != -1;
 }
 function parseTotalUnreadActiclesResponse(response){
      var unread = response.split(";")[0];

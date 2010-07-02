@@ -8,7 +8,9 @@
 <script type="text/javascript" src="../TinyRssNotifier.safariextension/common.js"></script>
   <script>
    var buttonName = "ttrss-button";
-
+   safari.addNewTTRssButton = function(){
+        safari.addMockToolbarItem(new MockSafariToolbarItem(buttonName));
+   };
   $(document).ready(function(){
         module("parsing response");
         
@@ -26,7 +28,7 @@
         });
 
 
-       module("getting TinyRss button");
+       module("manipulate TinyRss button");
        
        test("no ttrss button", function(){
             safari.generateRandomToolbarItems(5);
@@ -34,17 +36,16 @@
        });
        
        test("getting one ttrss button", function(){
-           expect(2);
-           var button = new ToolbarItem(buttonName, true);
-           safari.addMockToolbarItem(button);
+           safari.addNewTTRssButton();
            ok(getTTRssButtons().length == 1, "one TTRss buttons espected");
-           ok(safari.extension.toolbarItems.pop() == button, "pop the TTRss button");
        });
        
-        test("getting more ttrss button", function(){
+       test("getting more ttrss button", function(){
+           safari.clearToolbarItems();
+           safari.generateRandomToolbarItems(5);
            var numberTTButton = Math.random() * 10|0;
            for(var i = 0; i < numberTTButton; i++){
-              safari.addMockToolbarItem(new ToolbarItem(buttonName));
+                safari.addNewTTRssButton();
            }
            ok(getTTRssButtons().length == numberTTButton, numberTTButton+" TTRss buttons espected");
        });

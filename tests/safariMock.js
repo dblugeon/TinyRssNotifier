@@ -7,12 +7,15 @@ var safari = new function(){
     };
     this.generateRandomToolbarItems = function(number){
         for(var i = 0; i<number; i++){
-            this.extension.toolbarItems.push(new ToolbarItem("toolBar"+i));
+            this.extension.toolbarItems.push(new MockSafariToolbarItem("toolBar"+i));
         }
+    };
+    this.clearToolbarItems = function(){
+        this.extension.toolbarItems = new Array();
     };
 };
 
-function ToolbarItem(identifier, badge, image){
+function MockSafariToolbarItem(identifier, badge, image){
     this.identifier = "org.dbn.tinyrssnotifier-M2O3C5K "+ identifier;
     this.badge = badge == null ? 0 : badge;
     this.image = image == null ? "mock.png" : image;

@@ -1,0 +1,15 @@
+Tiny Tiny Rss Notifier 0.1 by D. BLUGEON
+==================================
+
+This extension for Safari 5.x will periodically check the unread feeds in your Tiny Tiny Rss agregator.
+
+This extension code is under GPL 3.
+
+
+Changelog
+---------
+
+### 0.1
+
+* getting unread feeds count
+* clic on button open a new tab to the Tiny Tiny Rss Url

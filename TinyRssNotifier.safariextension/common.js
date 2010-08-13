@@ -2,6 +2,7 @@ function noError(response){
 	var unread = parseTotalUnreadActiclesResponse(response);
     return unread.length > 0 && unread != -1;
 }
+
 function parseTotalUnreadActiclesResponse(response){
      var unread = response.split(";")[0];
      console.debug("unread = "+unread);
@@ -41,6 +42,31 @@ function updateImageToolbarItems(imageRelativePath){
     }
 }
 
+function getTTRssURL(){
+	return safari.extension.settings.url;
+}
+
+function openTTRssWindow(){
+	for (currentWindow in safari.application.browserWindows) {
+		for (currentTab in safari.application.browserWindows[currentWindow].tabs) {
+		// We can't access the SafariBrowserTab.url if we can't access that URL!
+			if (safari.application.browserWindows[currentWindow].tabs[currentTab].url && safari.application.browserWindows[currentWindow].tabs[currentTab].url.indexOf(getTTRssURL()) == 0) {
+				// Because when we activate this window below, the array's index will change
+				// Use Array.forEach instead? Meh, makes escaping early more awkward.
+				var browserWindow = safari.application.browserWindows[currentWindow];
+				browserWindow.activate();
+				browserWindow.tabs[currentTab].url = getInboxUrl();
+				browserWindow.tabs[currentTab].activate();
+				return;
+			}
+		}
+	}
+
+	var browser = safari.application.activeBrowserWindow !=null ? safari.application.activeBrowserWindow : safari.application.openBrowserWindow();
+	var newTab = browser.openTab();
+	newTab.url = getTTRssURL();
+}
+
 //actualy untestable functions
 function getUpdateCountFromSite(){
     $.ajax({
@@ -61,4 +87,10 @@ function getUpdateCountFromSite(){
         }
     });
     setTimeout(getUpdateCountFromSite, 10000);
+}
+
+function myCommandHandler(event){
+	if(event.command == "ttrss-button"){
+		openTTRssWindow();
+	}
 }

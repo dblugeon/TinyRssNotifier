@@ -11,6 +11,7 @@
    safari.addNewTTRssButton = function(){
         safari.addMockToolbarItem(new MockSafariToolbarItem(buttonName, 0, safari.extension.baseURI+"error.png"));
    };
+   safari.extension.settings.url = "http://tt-rss.org/demo/";
   $(document).ready(function(){
         module("parsing response");
         
@@ -81,6 +82,13 @@
 			 for(var i = 0; i < getTTRssButtons().length; i++){
                 ok(getTTRssButtons()[i].image == safari.extension.baseURI+"error.png", "espected error.png");
             }
+       });
+
+       test("open the tt-rss tabs", function(){
+       	    safari.clearToolbarItems();
+            safari.addNewTTRssButton();
+            openTTRssWindow();
+            ok(safari.extension.settings.url.indexOf(safari.application.activeBrowserWindow.activeTab.url) != -1, "the active url does not equals to activeTab"); 
        });
   });
   </script>

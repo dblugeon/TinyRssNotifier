@@ -25,6 +25,8 @@
 				<string>ttrss-button</string>
 				<key>Image</key>
 				<string>icon.png</string>
+				<key>Include By Default</key>
+				<true/>
 				<key>Label</key>
 				<string>Tiny Rss</string>
 			</dict>

@@ -53,5 +53,9 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://github.com/dblugeon/TinyRssNotifier/wiki/update.plist</string>
+	<key>Website</key>
+	<string>http://github.com/dblugeon/TinyRssNotifier/</string>
 </dict>
 </plist>

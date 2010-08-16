@@ -28,7 +28,9 @@
 				<key>Include By Default</key>
 				<true/>
 				<key>Label</key>
-				<string>Tiny Rss</string>
+				<string>Tiny Tiny Rss</string>
+				<key>Tool Tip</key>
+				<string>open Tiny Tiny Rss url.</string>
 			</dict>
 		</array>
 	</dict>

@@ -84,12 +84,25 @@
             }
        });
 
-       test("open the tt-rss tabs", function(){
+
+ 	  module("manipulate Tiny Tiny Rss's tabs");
+
+       test("open the tt-rss tabs without tabs already opened", function(){
        	    safari.clearToolbarItems();
             safari.addNewTTRssButton();
             openTTRssWindow();
             ok(safari.extension.settings.url.indexOf(safari.application.activeBrowserWindow.activeTab.url) != -1, "the active url does not equals to activeTab"); 
        });
+
+	  test("activate the tabs with tabs already opened", function(){
+		safari.clearToolbarItems();
+		safari.addNewTTRssButton();
+		var window = safari.application.openBrowserWindow();
+		var expectedTab = window.openTab("background");
+
+		openTTRssWindow();
+		ok(safari.extension.settings.url.indexOf(safari.application.activeBrowserWindow.activeTab.url) != -1, "the active url does not equals to activeTab");		     
+		});
   });
   </script>
   

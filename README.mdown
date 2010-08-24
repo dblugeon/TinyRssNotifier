@@ -8,8 +8,11 @@ This extension code is under GPL 3.
 
 Changelog
 ---------
+### 0.2
+
+* Correct a problem with the extension button. Now an already opened tabs is activate when a clic on the button.
 
 ### 0.1
 
-* getting unread feeds count
-* clic on button open a new tab to the Tiny Tiny Rss Url
+* Getting unread feeds count
+* Clic on the button to open a new tab to the Tiny Tiny Rss's Url

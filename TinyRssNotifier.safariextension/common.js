@@ -47,6 +47,7 @@ function getTTRssURL(){
 }
 
 function openTTRssWindow(){
+	//inspered by this gmail extension : http://lifefrombelow.com/gmail-checker/
 	for (currentWindow in safari.application.browserWindows) {
 		for (currentTab in safari.application.browserWindows[currentWindow].tabs) {
 		// We can't access the SafariBrowserTab.url if we can't access that URL!
@@ -55,7 +56,6 @@ function openTTRssWindow(){
 				// Use Array.forEach instead? Meh, makes escaping early more awkward.
 				var browserWindow = safari.application.browserWindows[currentWindow];
 				browserWindow.activate();
-				browserWindow.tabs[currentTab].url = getInboxUrl();
 				browserWindow.tabs[currentTab].activate();
 				return;
 			}

@@ -91,7 +91,7 @@
        	    safari.clearToolbarItems();
             safari.addNewTTRssButton();
             openTTRssWindow();
-            ok(safari.extension.settings.url.indexOf(safari.application.activeBrowserWindow.activeTab.url) != -1, "the active url does not equals to activeTab"); 
+            ok(safari.extension.settings.url.indexOf(safari.application.activeBrowserWindow.activeTab.url) != -1, "the active url does not equals to tiny tiny rss url"); 
        });
 
 	  test("activate the tabs with tabs already opened", function(){
@@ -101,7 +101,16 @@
 		var expectedTab = window.openTab("background");
 
 		openTTRssWindow();
-		ok(safari.extension.settings.url.indexOf(safari.application.activeBrowserWindow.activeTab.url) != -1, "the active url does not equals to activeTab");		     
+		ok(safari.extension.settings.url.indexOf(safari.application.activeBrowserWindow.activeTab.url) != -1, "the active url does not equals to tiny tiny rss url");
+		var countTTurl = 1;
+		for (currentWindow in safari.application.browserWindows) {
+			for (currentTab in safari.application.browserWindows[currentWindow].tabs) {
+				if (safari.application.browserWindows[currentWindow].tabs[currentTab].url && safari.application.browserWindows[currentWindow].tabs[currentTab].url.indexOf(getTTRssURL()) == 0) {
+					countTTurl ++;
+				}
+			}
+		}
+		ok(countTTurl > 1, "there are more one tiny tiny rss tab");
 		});
   });
   </script>

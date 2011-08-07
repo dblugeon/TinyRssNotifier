@@ -8,6 +8,11 @@ This extension code is under GPL 3.
 
 Changelog
 ---------
+### 0.3
+
+* Correction for Safari 5.1. This version works with the last version of Safari
+* Update version string to equals with the extension's download filename
+
 ### 0.1.1
 
 * Correct a problem with the extension button. Now an already opened tabs is activate when a clic on the button.

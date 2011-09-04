@@ -48,8 +48,8 @@ function getTTRssURL(){
 
 function openTTRssWindow(){
 	//inspered by this gmail extension : http://lifefrombelow.com/gmail-checker/
-	for (currentWindow in safari.application.browserWindows) {
-		for (currentTab in safari.application.browserWindows[currentWindow].tabs) {
+	for (var currentWindow in safari.application.browserWindows) {
+		for (var currentTab in safari.application.browserWindows[currentWindow].tabs) {
 		// We can't access the SafariBrowserTab.url if we can't access that URL!
 			if (safari.application.browserWindows[currentWindow].tabs[currentTab].url && safari.application.browserWindows[currentWindow].tabs[currentTab].url.indexOf(getTTRssURL()) == 0) {
 				// Because when we activate this window below, the array's index will change

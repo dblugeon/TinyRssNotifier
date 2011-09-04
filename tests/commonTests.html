@@ -3,9 +3,9 @@
 <head>
   <script src="../TinyRssNotifier.safariextension/jquery-1.6.2.min.js"></script>
   <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
-<script type="text/javascript" src="qunit.js"></script>
-<script type="text/javascript" src="safariMock.js"></script>
-<script type="text/javascript" src="../TinyRssNotifier.safariextension/common.js"></script>
+  <script type="text/javascript" src="qunit.js"></script>
+  <script type="text/javascript" src="safariMock.js"></script>
+  <script type="text/javascript" src="../TinyRssNotifier.safariextension/common.js"></script>
   <script>
    var buttonName = "ttrss-button";
    safari.addNewTTRssButton = function(){
@@ -103,8 +103,9 @@
 		openTTRssWindow();
 		ok(safari.extension.settings.url.indexOf(safari.application.activeBrowserWindow.activeTab.url) != -1, "the active url does not equals to tiny tiny rss url");
 		var countTTurl = 1;
-		for (currentWindow in safari.application.browserWindows) {
-			for (currentTab in safari.application.browserWindows[currentWindow].tabs) {
+		
+		for (var currentWindow in safari.application.browserWindows) {
+			for (var currentTab in safari.application.browserWindows[currentWindow].tabs) {
 				if (safari.application.browserWindows[currentWindow].tabs[currentTab].url && safari.application.browserWindows[currentWindow].tabs[currentTab].url.indexOf(getTTRssURL()) == 0) {
 					countTTurl ++;
 				}

@@ -6,6 +6,7 @@
   <script type="text/javascript" src="qunit.js"></script>
   <script type="text/javascript" src="safariMock.js"></script>
   <script type="text/javascript" src="../TinyRssNotifier.safariextension/common.js"></script>
+  <script type="text/javascript" src="../TinyRssNotifier.safariextension/tinytinyrss.js"></script>
   <script>
    var buttonName = "ttrss-button";
    safari.addNewTTRssButton = function(){
@@ -112,6 +113,19 @@
 			}
 		}
 		ok(countTTurl > 1, "there are more one tiny tiny rss tab");
+		});
+		
+		module("testing tinytinyrss class");
+		
+		test("getting version", function(){
+			var ttrss = getTinyTinyRssInstance(safari.extension.settings.url,
+			safari.extension.settings.login, safari.extension.settings.password);
+			
+			var regExValidVersion = /^[0-9]\.[0-9](\.[0-9])?$/;
+			
+			
+			ok(ttrss.isValide(), "instance no valid, check url and api enable in config file");
+			ok(regExValidVersion.test(ttrss.getVersion()), "it's not a valid version");
 		});
   });
   </script>

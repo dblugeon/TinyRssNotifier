@@ -89,8 +89,6 @@ function getUpdateCountFromSite(){
     setTimeout(getUpdateCountFromSite, 10000);
 }
 
-function myCommandHandler(event){
-	if(event.command == "ttrss-button"){
-		openTTRssWindow();
-	}
+function ttRssButtonHandler(event){
+	openTTRssWindow();
 }

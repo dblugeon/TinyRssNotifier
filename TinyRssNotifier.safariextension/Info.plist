@@ -23,6 +23,8 @@
 		<key>Toolbar Items</key>
 		<array>
 			<dict>
+				<key>Command</key>
+				<string>ttRssButtonHandler</string>
 				<key>Identifier</key>
 				<string>ttrss-button</string>
 				<key>Image</key>

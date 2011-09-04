@@ -5,6 +5,15 @@ This extension for Safari 5.x will periodically check the unread feeds in your T
 
 This extension code is under GPL 3.
 
+Requierement
+---------
+* you must enable the api access on your instance.
+
+
+Testing
+--------
+* this addon is only testing on 1.5.5 version
+
 
 Changelog
 ---------

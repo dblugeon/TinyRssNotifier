@@ -127,6 +127,20 @@
 			ok(ttrss.isValide(), "instance no valid, check url and api enable in config file");
 			ok(regExValidVersion.test(ttrss.getVersion()), "it's not a valid version");
 		});
+
+		test("getting headlines", function(){
+			var ttrss = getTinyTinyRssInstance(safari.extension.settings.url,
+			safari.extension.settings.login, safari.extension.settings.password);
+			stop();
+			 ttrss.getFreshHeadlines(function(headlines){
+				ok($.isArray(headlines), "headlines must be an aray");
+			
+				if(headlines.length >0){
+					ok(headlines[0].title, "title doesn't not exist");
+				}
+				start();
+			 });
+		});
   });
   </script>
   

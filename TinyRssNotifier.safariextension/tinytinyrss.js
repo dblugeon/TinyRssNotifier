@@ -62,4 +62,26 @@ function TinyTinyRss(url, login, password){
 		return version;
 	}
 	
+	this.getFreshHeadlines = function(callback){
+		var result;
+		$.ajax(this._url, {
+			type:"POST",
+			dataType:"json",
+			data:{
+				sid:this._sid,
+				op:"getHeadlines",
+				view_mode:"unread",
+				feed_id:"-4"
+			},
+			success:function(data){
+				result = data.content;
+				if(callback)
+					callback(data.content);
+			},
+			error:function(qXHR, textStatus, errorThrown){
+				result = textStatus;
+			}
+		});
+		return result;
+	};
 };

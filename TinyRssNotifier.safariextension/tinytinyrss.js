@@ -73,6 +73,7 @@ function TinyTinyRss(url, login, password){
 				view_mode:"unread",
 				feed_id:"-4"
 			},
+			context:callback,
 			success:function(data){
 				result = data.content;
 				if(callback)

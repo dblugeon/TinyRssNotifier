@@ -20,6 +20,15 @@
 	<dict>
 		<key>Global Page</key>
 		<string>notifier.html</string>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>pop.html</string>
+				<key>Identifier</key>
+				<string>pop</string>
+			</dict>
+		</array>
 		<key>Toolbar Items</key>
 		<array>
 			<dict>
@@ -33,6 +42,8 @@
 				<true/>
 				<key>Label</key>
 				<string>Tiny Tiny Rss</string>
+				<key>Popover</key>
+				<string>pop</string>
 				<key>Tool Tip</key>
 				<string>open Tiny Tiny Rss url.</string>
 			</dict>

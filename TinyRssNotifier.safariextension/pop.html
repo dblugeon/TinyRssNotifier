@@ -1,0 +1,41 @@
+<html>
+<head>
+
+		  <script type="text/javascript" src="tinytinyrss.js"></script>
+          <script src="jquery-1.6.2.min.js"></script>
+          <script src="jquery.tmpl.min.js"></script>
+         
+        <script>
+          $(document).ready(function(){
+				var ttrss = getTinyTinyRssInstance(safari.extension.settings.url, safari.extension.settings.login, safari.extension.secureSettings.password);
+        		 ttrss.getFreshHeadlines(function(headlines){
+        		 
+        		 	$( "#freshlist" ).empty();
+        		 	$("#freshArticlesListTmpl").tmpl(headlines).appendTo("#freshlist");
+        		 	
+        		 	$("#freshCountTitle").empty();
+        		 	$("#freshCountTitleTmpl").tmpl({number:headlines.length.toString()}).appendTo("#freshCountTitle");
+        		 });
+    
+        		 $("#freshCountTitleTmpl").tmpl({number:"unknow"}).appendTo("#freshCountTitle");
+		   });
+        </script>
+        
+        <script id="freshArticlesListTmpl" type="text/x-jquery-tmpl">
+			<li>${title}. (${date})</li>
+		</script>
+		
+		 <script id="freshCountTitleTmpl" type="text/x-jquery-tmpl">
+			<h1>there are ${number} fresh article.</h1>
+		</script>
+
+</head>
+<body>
+
+<div id="freshCountTitle"></div>
+<ul id="freshlist">
+</ul>
+
+
+</body>
+</html>

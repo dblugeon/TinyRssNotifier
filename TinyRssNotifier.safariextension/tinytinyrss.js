@@ -16,8 +16,8 @@ function TinyTinyRss(url, login, password){
 	this._url = url+"/api/";
 	this._login = login;
 	this._pass = password;
-	
-	
+	this._observer = null;
+	this._freshHeadlinesTimer = null;
 	
 	this.isValide = function(){
 		var isValide = false;
@@ -62,27 +62,38 @@ function TinyTinyRss(url, login, password){
 		return version;
 	}
 	
-	this.getFreshHeadlines = function(callback){
-		var result;
-		$.ajax(this._url, {
-			type:"POST",
-			dataType:"json",
-			data:{
-				sid:this._sid,
-				op:"getHeadlines",
-				view_mode:"unread",
-				feed_id:"-4"
-			},
-			context:callback,
-			success:function(data){
-				result = data.content;
-				if(callback)
-					callback(data.content);
-			},
-			error:function(qXHR, textStatus, errorThrown){
-				result = textStatus;
-			}
-		});
-		return result;
+	this.observerNewsFreshHeadlines = function(observer){
+		this._observer = observer;
 	};
+
+	this.startObservingNewFreshHeadLines = function(){
+		this._freshHeadlinesTimer = setInterval(_startObservingNewFreshHeadLines,
+		1000);
+	};
+
+	this.stopObservingNewFreshHeadLines = function(){
+		clearTimeout(this._freshHeadlinesTimer);
+		this._freshHeadlinesTimer = null;
+	}
+};
+//we use a "private" function to update and prevent the observer with new data
+function _startObservingNewFreshHeadLines(){
+		if(TTRSS._observer){
+				$.ajax(TTRSS._url, {
+					async: false,
+					type:"POST",
+					dataType:"json",
+					data:{
+						sid:this._sid,
+						op:"getHeadlines",
+						view_mode:"unread",
+						feed_id:"-4"
+					},
+					context:TTRSS,
+					success: function(data){
+						var result = data.content;
+						this._observer(result);
+					}
+				})
+		}
 };

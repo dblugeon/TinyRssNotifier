@@ -132,14 +132,16 @@
 			var ttrss = getTinyTinyRssInstance(safari.extension.settings.url,
 			safari.extension.settings.login, safari.extension.settings.password);
 			stop();
-			 ttrss.getFreshHeadlines(function(headlines){
+			 ttrss.observerNewsFreshHeadlines(function(headlines){
 				ok($.isArray(headlines), "headlines must be an aray");
 			
 				if(headlines.length >0){
 					ok(headlines[0].title, "title doesn't not exist");
 				}
+				ttrss.stopObservingNewFreshHeadLines();
 				start();
 			 });
+			 ttrss.startObservingNewFreshHeadLines();
 		});
   });
   </script>

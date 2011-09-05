@@ -1,41 +1,41 @@
 <html>
-<head>
-
-		  <script type="text/javascript" src="tinytinyrss.js"></script>
-          <script src="jquery-1.6.2.min.js"></script>
-          <script src="jquery.tmpl.min.js"></script>
+	<head>
+		<script type="text/javascript" src="tinytinyrss.js"></script>
+		<script src="jquery-1.6.2.min.js"></script>
+		<script src="jquery.tmpl.min.js"></script>
          
         <script>
-          $(document).ready(function(){
+			$(document).ready(function(){
 				var ttrss = getTinyTinyRssInstance(safari.extension.settings.url, safari.extension.settings.login, safari.extension.secureSettings.password);
-        		 ttrss.getFreshHeadlines(function(headlines){
-        		 
-        		 	$( "#freshlist" ).empty();
-        		 	$("#freshArticlesListTmpl").tmpl(headlines).appendTo("#freshlist");
-        		 	
-        		 	$("#freshCountTitle").empty();
-        		 	$("#freshCountTitleTmpl").tmpl({number:headlines.length.toString()}).appendTo("#freshCountTitle");
-        		 });
-    
-        		 $("#freshCountTitleTmpl").tmpl({number:"unknow"}).appendTo("#freshCountTitle");
-		   });
-        </script>
-        
-        <script id="freshArticlesListTmpl" type="text/x-jquery-tmpl">
-			<li>${title}. (${date})</li>
+				ttrss.getFreshHeadlines(function(headlines){
+				
+					$( "#freshlist" ).empty();
+					$("#freshArticlesListTmpl").tmpl(headlines,{
+						//workaround, we need this to convert correctly the string date from strtotime in js.
+						getUpdatedLocaleString: function(){
+							var stringDate = new Date(this.data.updated*1000).toLocaleString();
+							return stringDate.substring(0, stringDate.length - 5);
+						}
+					}).appendTo("#freshlist");
+					
+					$("#freshCountTitle").empty();
+					$("#freshCountTitleTmpl").tmpl({number:headlines.length.toString()}).appendTo("#freshCountTitle");
+				});
+				$("#freshCountTitleTmpl").tmpl({number:"unknow"}).appendTo("#freshCountTitle");
+				
+				ttrss.startObservingNewFreshHeadLines();
+			});
 		</script>
-		
-		 <script id="freshCountTitleTmpl" type="text/x-jquery-tmpl">
-			<h1>there are ${number} fresh article.</h1>
+		<script id="freshArticlesListTmpl" type="text/x-jquery-tmpl">
+			<li>${title}. (published : ${$item.getUpdatedLocaleString()})</li>
 		</script>
 
-</head>
-<body>
-
-<div id="freshCountTitle"></div>
-<ul id="freshlist">
-</ul>
-
-
-</body>
+		<script id="freshCountTitleTmpl" type="text/x-jquery-tmpl">
+			<h1>There are ${number} fresh article.</h1>
+		</script>
+	</head>
+	<body>
+		<div id="freshCountTitle"></div>
+		<ul id="freshlist"></ul>
+	</body>
 </html>

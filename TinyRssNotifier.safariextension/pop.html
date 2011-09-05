@@ -8,7 +8,7 @@
 			$(document).ready(function(){
 				var ttrss = getTinyTinyRssInstance(safari.extension.settings.url, safari.extension.settings.login, safari.extension.secureSettings.password);
 				ttrss.getFreshHeadlines(function(headlines){
-				
+
 					$( "#freshlist" ).empty();
 					$("#freshArticlesListTmpl").tmpl(headlines,{
 						//workaround, we need this to convert correctly the string date from strtotime in js.
@@ -26,8 +26,14 @@
 				ttrss.startObservingNewFreshHeadLines();
 			});
 		</script>
+		<script>
+			function openInTab(source){
+				var newTab=safari.application.activeBrowserWindow.openTab();
+				newTab.url=source;
+			}
+		</script>
 		<script id="freshArticlesListTmpl" type="text/x-jquery-tmpl">
-			<li>${title}. (published : ${$item.getUpdatedLocaleString()})</li>
+			<li><a href="javascript:openInTab('${link}')">${title} (published : ${$item.getUpdatedLocaleString()})</a></li>
 		</script>
 
 		<script id="freshCountTitleTmpl" type="text/x-jquery-tmpl">

@@ -67,8 +67,9 @@ function TinyTinyRss(url, login, password){
 	};
 
 	this.startObservingNewFreshHeadLines = function(){
+		_startObservingNewFreshHeadLines();
 		this._freshHeadlinesTimer = setInterval(_startObservingNewFreshHeadLines,
-		1000);
+		10000);
 	};
 
 	this.stopObservingNewFreshHeadLines = function(){

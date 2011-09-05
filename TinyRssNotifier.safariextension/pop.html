@@ -3,11 +3,12 @@
 		<script type="text/javascript" src="tinytinyrss.js"></script>
 		<script src="jquery-1.6.2.min.js"></script>
 		<script src="jquery.tmpl.min.js"></script>
-         
-        <script>
+
+		<script>
 			$(document).ready(function(){
 				var ttrss = getTinyTinyRssInstance(safari.extension.settings.url, safari.extension.settings.login, safari.extension.secureSettings.password);
-				ttrss.getFreshHeadlines(function(headlines){
+				ttrss.isValide();
+				ttrss.observerNewsFreshHeadlines(function(headlines){
 
 					$( "#freshlist" ).empty();
 					$("#freshArticlesListTmpl").tmpl(headlines,{
@@ -27,13 +28,17 @@
 			});
 		</script>
 		<script>
-			function openInTab(source){
+			function openInTab(link, idArticle){
 				var newTab=safari.application.activeBrowserWindow.openTab();
-				newTab.url=source;
+				newTab.url=link;
+				var ttrss = getTinyTinyRssInstance();
+				if(ttrss.isValide()){
+					ttrss.updateUnreadArticle(idArticle,0);
+				}
 			}
 		</script>
 		<script id="freshArticlesListTmpl" type="text/x-jquery-tmpl">
-			<li><a href="javascript:openInTab('${link}')">${title} (published : ${$item.getUpdatedLocaleString()})</a></li>
+			<li><a href="javascript:openInTab('${link}', '${id}')">${title} (published : ${$item.getUpdatedLocaleString()})</a></li>
 		</script>
 
 		<script id="freshCountTitleTmpl" type="text/x-jquery-tmpl">

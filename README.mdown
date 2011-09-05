@@ -7,12 +7,12 @@ This extension code is under GPL 3.
 
 Requierement
 ---------
-* you must enable the api access on your instance.
+* you must enable the api access on your instance. You con modify this config on the preference panel.
 
 
 Testing
 --------
-* this addon is only testing on 1.5.5 version
+* this addon is only tested on 1.5.5 version
 
 
 Changelog

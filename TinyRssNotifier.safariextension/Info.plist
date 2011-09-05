@@ -27,6 +27,8 @@
 				<string>pop.html</string>
 				<key>Identifier</key>
 				<string>pop</string>
+				<key>Width</key>
+				<real>700</real>
 			</dict>
 		</array>
 		<key>Toolbar Items</key>

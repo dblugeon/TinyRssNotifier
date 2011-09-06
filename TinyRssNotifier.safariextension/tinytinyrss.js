@@ -109,7 +109,7 @@ function _startObservingNewFreshHeadLines(){
 				sid:this._sid,
 				op:"getHeadlines",
 				view_mode:"unread",
-				feed_id:"-4"
+				feed_id:"-3"
 			},
 			context:TTRSS,
 			success: function(data){

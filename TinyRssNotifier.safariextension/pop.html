@@ -29,8 +29,8 @@
 		</script>
 		<script>
 			function openInTab(link, idArticle){
-				var newTab=safari.application.activeBrowserWindow.openTab();
-				newTab.url=link;
+				var newTab = safari.application.activeBrowserWindow.openTab();
+				newTab.url = link;
 				var ttrss = getTinyTinyRssInstance();
 				if(ttrss.isValide()){
 					ttrss.updateUnreadArticle(idArticle,0);

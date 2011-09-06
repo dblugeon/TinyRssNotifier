@@ -10,7 +10,7 @@ function getTinyTinyRssInstance(url, login, password){
 
 	return TTRSS;
 
-};
+}
 
 function TinyTinyRss(url, login, password){
 	this._url = url+"/api/";
@@ -40,7 +40,7 @@ function TinyTinyRss(url, login, password){
 		});
 		
 		return isValide;
-	}
+	};
 	
 	this.getVersion = function(){
 		var version = "";
@@ -51,7 +51,7 @@ function TinyTinyRss(url, login, password){
 			dataType:"json",
 			data:{
 				sid:this._sid,
-				op:"getVersion",
+				op:"getVersion"
 			},
 			success: function(data){
 				if(data.content.version){
@@ -60,7 +60,7 @@ function TinyTinyRss(url, login, password){
 			}
 		});
 		return version;
-	}
+	};
 	
 	this.updateUnreadArticle = function(articlesId, mode){
 		$.ajax(TTRSS._url, {
@@ -81,7 +81,8 @@ function TinyTinyRss(url, login, password){
 				}
 			}
 		});
-	}
+	};
+
 	this.observerNewsFreshHeadlines = function(observer){
 		this._observer = observer;
 	};
@@ -95,8 +96,8 @@ function TinyTinyRss(url, login, password){
 	this.stopObservingNewFreshHeadLines = function(){
 		clearTimeout(this._freshHeadlinesTimer);
 		this._freshHeadlinesTimer = null;
-	}
-};
+	};
+}
 //we use a "private" function to update and prevent the observer with new data
 function _startObservingNewFreshHeadLines(){
 	if(TTRSS._observer){
@@ -115,6 +116,6 @@ function _startObservingNewFreshHeadLines(){
 				var result = data.content;
 				this._observer(result);
 			}
-		})
+		});
 	}
-};
+}

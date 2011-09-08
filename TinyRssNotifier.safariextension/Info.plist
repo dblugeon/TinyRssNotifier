@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3</string>
+	<string>0.4</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -71,7 +71,7 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>http://github.com/dblugeon/TinyRssNotifier/wiki/update.plist</string>
+	<string>http://github.com/dblugeon/TinyRssNotifier/update.plist</string>
 	<key>Website</key>
 	<string>http://github.com/dblugeon/TinyRssNotifier/</string>
 </dict>

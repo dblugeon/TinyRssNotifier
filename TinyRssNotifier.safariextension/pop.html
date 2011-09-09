@@ -34,6 +34,7 @@
 				var ttrss = getTinyTinyRssInstance();
 				if(ttrss.isValide()){
 					ttrss.updateUnreadArticle(idArticle,0);
+					safari.extension.popovers[0].hide();
 				}
 			}
 		</script>

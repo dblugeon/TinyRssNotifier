@@ -19,9 +19,10 @@ Changelog
 ---------
 ### 0.4
 
-* work in progress
 * update jquery library
 * adding a popover which display the fresh headlines
+* TODO : addon must inform the user when it can't loggin to the TTRss instance.
+* TODO : add eventlistener to update setting for TTRSS object
 
 ### 0.3
 
